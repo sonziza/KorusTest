@@ -1,21 +1,39 @@
 ﻿
-@model IEnumerable<KorusTest.Model.Telephone>
+@using KorusTest.ViewModels
+@using KorusTest.Model
+@model IndexViewModel
 @{
     ViewBag.Title = "Все телефоны";
 }
-<a asp-action="Create">Добавить пользователя</a>
+
+<form class="form-inline">
+    <label>Выберите сотрудника:</label>
+    <select name="employeeId" class="form-control">
+        @foreach (EmployeesModel emp in Model.Employees)
+        {
+            <option value="@emp.Id">@emp.FIO</option>
+        }
+    </select>
+    <input type="submit" />
+</form>
+<br />
 <table class="table">
-    <tr><td>Номер</td><td>Абонент</td></tr>
-    @foreach (KorusTest.Model.Telephone item in Model)
+    @foreach (Telephone t in Model.Telephones)
     {
-        <tr>
-            <td>@item.Number</td>
-            <td>@item.Employee.FIO</td>
-            <!--<td>item.Salary.ToString("c")</td>-->
-             <!--foreach (var phone in item.Telephones)
-            {
-                <td>phone.Number</td>
-            }-->
-        </tr>
+        <tr><td>@t.Id</td><td>@t.Number</td></tr>
     }
 </table>
+
+<!--
+<a asp-action="Create">Добавить телефон</a>
+<table class="table">
+    <tr><td>номер</td><td>абонент</td></tr>
+    foreach (var item in Model)
+    {
+        <tr>
+            <td>item.Id</td>
+            <td>item.Number</td>
+            <td>item.Employee.FIO</td>
+        </tr>
+    }
+</table> -->
