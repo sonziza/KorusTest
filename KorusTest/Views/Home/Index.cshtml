@@ -1,21 +1,21 @@
 ﻿
-@model IEnumerable<KorusTest.Model.Employee>
+@model IEnumerable<KorusTest.Model.Telephone>
 @{
-    ViewBag.Title = "Все сотрудники";
+    ViewBag.Title = "Все телефоны";
 }
 <a asp-action="Create">Добавить пользователя</a>
 <table class="table">
-    <tr><td>Имя</td><td>Возраст</td><td>Зарплата</td></tr>
-    @foreach (var item in Model)
+    <tr><td>Номер</td><td>Абонент</td></tr>
+    @foreach (KorusTest.Model.Telephone item in Model)
     {
         <tr>
-            <td>@item.FIO</td>
-            <td>@item.Birthday</td>
-            <td>@item.Salary.ToString("c")</td>
-            @foreach (var phone in item.Telephones)
+            <td>@item.Number</td>
+            <td>@item.Employee.FIO</td>
+            <!--<td>item.Salary.ToString("c")</td>-->
+             <!--foreach (var phone in item.Telephones)
             {
-                <td>@phone.Number</td>
-            }
+                <td>phone.Number</td>
+            }-->
         </tr>
     }
 </table>

@@ -11,7 +11,7 @@ namespace KorusTest.Model
     {
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Position> Positions { get; set; }
-        public DbSet<Telephone> Telephone { get; set; }
+        public DbSet<Telephone> Telephones { get; set; }
         public DbSet<Workrecord> Workrecord { get; set; }
         public KorusContext(DbContextOptions<KorusContext> options) : base(options)
         {
