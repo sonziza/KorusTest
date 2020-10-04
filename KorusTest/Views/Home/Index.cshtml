@@ -1,39 +1,52 @@
 ﻿
-@using KorusTest.ViewModels
 @using KorusTest.Model
-@model IndexViewModel
+@model IEnumerable<Telephone>
+
 @{
     ViewBag.Title = "Все телефоны";
 }
 
-<form class="form-inline">
+<!--<form class="form-inline">
     <label>Выберите сотрудника:</label>
     <select name="employeeId" class="form-control">
-        @foreach (EmployeesModel emp in Model.Employees)
+        foreach (EmployeesModel emp in Model.Employees)
         {
-            <option value="@emp.Id">@emp.FIO</option>
+            <option value="emp.Id">emp.FIO</option>
         }
     </select>
     <input type="submit" />
 </form>
 <br />
 <table class="table">
-    @foreach (Telephone t in Model.Telephones)
+    foreach (Telephone t in Model.Telephones)
     {
-        <tr><td>@t.Id</td><td>@t.Number</td></tr>
+        <tr><td>t.Id</td><td>t.Number</td></tr>
     }
-</table>
+</table>-->
 
-<!--
+
 <a asp-action="Create">Добавить телефон</a>
 <table class="table">
-    <tr><td>номер</td><td>абонент</td></tr>
-    foreach (var item in Model)
+    <tr>
+        <td>
+            номер
+        </td>
+        <td>
+            абонент
+        </td>
+    </tr>
+    @foreach (var item in Model)
     {
         <tr>
-            <td>item.Id</td>
-            <td>item.Number</td>
-            <td>item.Employee.FIO</td>
+            <td>
+                @item.Id
+            </td>
+            <td>
+                @item.Number
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.FIO)
+            </td>
         </tr>
     }
-</table> -->
+</table> 

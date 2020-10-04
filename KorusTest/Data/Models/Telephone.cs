@@ -10,7 +10,7 @@ namespace KorusTest.Model
     {
         public int Id { get; set; }
         public string Number { get; set; }
-        public int EmployeeId { get; set; }
+        public int? EmployeeId { get; set; }
         public virtual Employee Employee { get; set; }
 
     }

@@ -11,59 +11,63 @@ namespace EFDataApp.Controllers
 {
     public class HomeController : Controller
     {
-        List<Employee> employees;
-        List<Telephone>  telephones;
-        public HomeController()
-        {
-            employees = new List<Employee>
-            {
-                new Employee {Id = 1, FIO = "Иванов Иван Иванович", Salary = 800000, Birthday= new System.DateTime(1998,10,10)},
-                new Employee {Id = 2, FIO = "Петров Павел Иванович", Salary = 800000, Birthday = new System.DateTime(2000, 10, 10) }
-            };
+        #region
+        //List<Employee> employees;
+        //List<Telephone>  telephones;
+        //public HomeController()
+        //{
+        //    employees = new List<Employee>
+        //    {
+        //        new Employee {Id = 1, FIO = "Иванов Иван Иванович", Salary = 800000, Birthday= new System.DateTime(1998,10,10)},
+        //        new Employee {Id = 2, FIO = "Петров Павел Иванович", Salary = 800000, Birthday = new System.DateTime(2000, 10, 10) }
+        //    };
 
-            //Employee emp1 = new Employee { Id = 1, FIO = "Иванов Иван Иванович", Salary = 800000, Birthday= new System.DateTime(1998,10,10) };
-            //Employee emp2 = new Employee { Id = 2, FIO = "Петров Павел Иванович", Salary = 800000, Birthday = new System.DateTime(2000, 10, 10) };
+        //    //Employee emp1 = new Employee { Id = 1, FIO = "Иванов Иван Иванович", Salary = 800000, Birthday= new System.DateTime(1998,10,10) };
+        //    //Employee emp2 = new Employee { Id = 2, FIO = "Петров Павел Иванович", Salary = 800000, Birthday = new System.DateTime(2000, 10, 10) };
 
 
-            telephones = new List<Telephone>
-            {
-                new Telephone { Id=1, Number="89559959595", Employee=employees.ElementAt(0) },
-                new Telephone { Id=2, Number="4235346334543", Employee=employees.ElementAt(0) },
-                new Telephone { Id=3, Number="33322", Employee=employees.ElementAt(1) },
-                new Telephone { Id=4, Number="222", Employee=employees.ElementAt(0) },
-                new Telephone { Id=5, Number="99999", Employee=employees.ElementAt(1) },
-            };
-        }
-        public IActionResult Index(int? employeeId)
-        {
-            //формируем список абонентов для передачи в представление
-            List<EmployeesModel> EmpModels = employees
-                .Select(e => new EmployeesModel { Id = e.Id, FIO = e.FIO })
-                .ToList();
+        //    telephones = new List<Telephone>
+        //    {
+        //        new Telephone { Id=1, Number="89559959595", Employee=employees.ElementAt(0) },
+        //        new Telephone { Id=2, Number="4235346334543", Employee=employees.ElementAt(0) },
+        //        new Telephone { Id=3, Number="33322", Employee=employees.ElementAt(1) },
+        //        new Telephone { Id=4, Number="222", Employee=employees.ElementAt(0) },
+        //        new Telephone { Id=5, Number="99999", Employee=employees.ElementAt(1) },
+        //    };
+        //}
+        //public IActionResult Index(int? employeeId)
+        //{
+        //    //формируем список абонентов для передачи в представление
+        //    List<EmployeesModel> EmpModels = employees
+        //        .Select(e => new EmployeesModel { Id = e.Id, FIO = e.FIO })
+        //        .ToList();
 
-            //добавляем на первое место "ВСЕ"
-            EmpModels.Insert(0, new EmployeesModel { Id = 0, FIO = "Все" });
+        //    //добавляем на первое место "ВСЕ"
+        //    EmpModels.Insert(0, new EmployeesModel { Id = 0, FIO = "Все" });
 
-            //формируем модель представления
-            IndexViewModel ivm = new IndexViewModel { Employees = EmpModels, Telephones = telephones };
+        //    //формируем модель представления
+        //    IndexViewModel ivm = new IndexViewModel { Employees = EmpModels, Telephones = telephones };
 
-            //Если передан Id сотрудника, фильтруем список
-            if (employeeId != null && employeeId > 0)
-            {
-                ivm.Telephones = telephones.Where(p => p.Employee.Id == employeeId);
-            }
+        //    //Если передан Id сотрудника, фильтруем список
+        //    if (employeeId != null && employeeId > 0)
+        //    {
+        //        ivm.Telephones = telephones.Where(p => p.Employee.Id == employeeId);
+        //    }
 
-            return View(ivm);
-        }
+        //    return View(ivm);
+        //}
+        #endregion
 
-        /*private KorusContext db;
+        private KorusContext db;
         public HomeController(KorusContext context)
         {
             db = context;
         }
-        public async Task<IActionResult> Index()
+        public ActionResult Index()
         {
-            return View(await db.Telephones.ToListAsync());
+            var telephones = db.Telephones.Include(p => p.Employee);
+            return View(telephones.ToList());
+            //return View(await db.Telephones.ToListAsync()); //prev version
         }
         public IActionResult Create()
         {
@@ -75,6 +79,6 @@ namespace EFDataApp.Controllers
             db.Telephones.Add(telephone);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
-        }*/
+        }
     }
 }

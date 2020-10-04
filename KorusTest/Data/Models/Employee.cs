@@ -15,10 +15,16 @@ namespace KorusTest.Model
         public virtual ICollection<Workrecord> WorkRecords { get; set; }
         public virtual ICollection<Telephone> Telephones { get; set; }
 
-       /* public static implicit operator Employee(Employee v)
+        public Employee()
         {
-            throw new NotImplementedException();
-        }*/
+            Telephones = new List<Telephone>();
+        }
+
+
+        /* public static implicit operator Employee(Employee v)
+         {
+             throw new NotImplementedException();
+         }*/
 
         //public override string ToString()
         //{
