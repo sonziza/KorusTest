@@ -54,18 +54,15 @@
         @*@Html.DisplayFor(modelItem => item.Telephones.Count)*@
         @foreach (var tel in item.Telephones)
         {
-            if (tel.EmployeeId == item.Id)
-            {
                 @tel.Number
                 <br />
-            }
         }
     </td>
     <td>
-        @Html.DisplayFor(modelItem => Model.Positions.Count())
-        @*foreach (var pos in Model.Positions)
+        @item.WorkRecords.Count
+        @*@foreach (var pos in Model.Positions)
         {
-            if (pos.Id = )
+            if (pos.Id = Model.Workrecords.First(x => x == );)
             {
                 var name = Model.Positions.Where(p => p.Id == rec.PositionId);
                 @name

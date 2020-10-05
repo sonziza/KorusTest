@@ -20,16 +20,5 @@ namespace KorusTest.Model
             Telephones = new List<Telephone>();
             WorkRecords = new List<Workrecord>();
         }
-
-
-        /* public static implicit operator Employee(Employee v)
-         {
-             throw new NotImplementedException();
-         }*/
-
-        //public override string ToString()
-        //{
-        //    return FIO;
-        //}
     }
 }

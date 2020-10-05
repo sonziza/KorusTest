@@ -72,11 +72,14 @@ namespace EFDataApp.Controllers
 
             //формируем модель представления
             IndexViewModel ivm = new IndexViewModel { 
-                Employees = db.Employees.Include(p => p.Telephones),
-                Telephones = db.Telephones, 
+                Employees = db.Employees
+                .Include(p => p.Telephones)
+                .Include(w => w.WorkRecords),
+                Telephones = db.Telephones.Include(e => e.Employee), 
                 Workrecords = db.Workrecords,
-                Positions=db.Positions.Include(w => w.WorkRecords)
+                Positions=db.Positions,
             };
+            //System.Console.WriteLine(db.Employees.);
             return View(ivm);
         }
         public IActionResult Create()
