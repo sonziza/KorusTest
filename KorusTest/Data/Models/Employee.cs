@@ -12,7 +12,7 @@ namespace KorusTest.Model
         public string FIO { get; set; }
         public DateTime Birthday { get; set; }
         public decimal Salary { get; set; }
-        public virtual ICollection<Workrecord> WorkRecords { get; set; }
+        public virtual List<Workrecord> WorkRecords { get; set; }
         public virtual ICollection<Telephone> Telephones { get; set; }
 
         public Employee()

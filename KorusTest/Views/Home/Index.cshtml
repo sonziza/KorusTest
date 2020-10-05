@@ -35,6 +35,9 @@
             ЗП
         </td>
         <td>
+            Дата рождения
+        </td>
+        <td>
             Телефоны
         </td>
         <td>
@@ -51,25 +54,23 @@
         @item.Salary
     </td>
     <td>
+        @item.Birthday
+    </td>
+    <td>
         @*@Html.DisplayFor(modelItem => item.Telephones.Count)*@
         @foreach (var tel in item.Telephones)
         {
-                @tel.Number
-                <br />
+            @tel.Number
+            <br />
         }
     </td>
     <td>
-        @item.WorkRecords.Count
-        @*@foreach (var pos in Model.Positions)
+        @foreach (var wr in item.WorkRecords)
         {
-            if (pos.Id = Model.Workrecords.First(x => x == );)
-            {
-                var name = Model.Positions.Where(p => p.Id == rec.PositionId);
-                @name
-                <br />
-            }
-        }*@
-        
+            @wr.Position.Name
+            <br />
+        }
+
     </td>
 </tr>
     }
