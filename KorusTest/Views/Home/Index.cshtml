@@ -3,7 +3,7 @@
 @model IndexViewModel
 
 @{
-    ViewBag.Title = "Все сотрудники";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @*<form class="form-inline">
@@ -46,32 +46,32 @@
     </tr>
     @foreach (Employee item in Model.Employees)
     {
-<tr>
-    <td>
-        @item.FIO
-    </td>
-    <td>
-        @item.Salary
-    </td>
-    <td>
-        @item.Birthday
-    </td>
-    <td>
-        @*@Html.DisplayFor(modelItem => item.Telephones.Count)*@
-        @foreach (var tel in item.Telephones)
-        {
-            @tel.Number
-            <br />
-        }
-    </td>
-    <td>
-        @foreach (var wr in item.WorkRecords)
-        {
-            @wr.Position.Name
-            <br />
-        }
+        <tr>
+            <td>
+                @item.FIO
+            </td>
+            <td>
+                @item.Salary
+            </td>
+            <td>
+                @item.Birthday
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.Telephones.Count)*@
+                @foreach (var tel in item.Telephones)
+                {
+                    @tel.Number
+                    <br />
+                }
+            </td>
+            <td>
+                @foreach (var wr in item.WorkRecords)
+                {
+                    @wr.Position.Name
+                    <br />
+                }
 
-    </td>
-</tr>
+            </td>
+        </tr>
     }
 </table>
