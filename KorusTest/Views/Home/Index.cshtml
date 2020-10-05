@@ -1,0 +1,77 @@
+﻿@using KorusTest.ViewModels
+@using KorusTest.Model
+@model IndexViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<form class="form-inline">
+        <label>Выберите сотрудника:</label>
+        <select name="employeeId" class="form-control">
+            foreach (EmployeesModel emp in Model.Employees)
+            {
+                <option value="emp.Id">emp.FIO</option>
+            }
+        </select>
+        <input type="submit" />
+    </form>
+    <br />
+    <table class="table">
+        foreach (Telephone t in Model.Telephones)
+        {
+            <tr><td>t.Id</td><td>t.Number</td></tr>
+        }
+    </table>*@
+
+
+@*<a asp-action="Create">Добавить телефон</a>*@
+<table class="table">
+    <tr>
+        <td>
+            ФИО
+        </td>
+        <td>
+            ЗП
+        </td>
+        <td>
+            Дата рождения
+        </td>
+        <td>
+            Телефоны
+        </td>
+        <td>
+            количество должностей
+        </td>
+    </tr>
+    @foreach (Employee item in Model.Employees)
+    {
+        <tr>
+            <td>
+                @item.FIO
+            </td>
+            <td>
+                @item.Salary
+            </td>
+            <td>
+                @item.Birthday
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.Telephones.Count)*@
+                @foreach (var tel in item.Telephones)
+                {
+                    @tel.Number
+                    <br />
+                }
+            </td>
+            <td>
+                @foreach (var wr in item.WorkRecords)
+                {
+                    @wr.Position.Name
+                    <br />
+                }
+
+            </td>
+        </tr>
+    }
+</table>

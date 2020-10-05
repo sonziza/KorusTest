@@ -1,0 +1,21 @@
+﻿@model KorusTest.Model.Employee
+@{
+    ViewBag.Title = "Добавление сотрудника";
+}
+<form asp-action="create"  asp-controller="home">
+    <div class="form-group">
+        <label asp-for="FIO" class="control-label">ФИО</label>
+        <input type="text" asp-for="FIO" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Birthday" class="control-label">Дата рождения</label>
+        <input type="datetime" asp-for="Birthday" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Salary" class="control-label">Зарплата</label>
+        <input type="number" asp-for="Salary" class="form-control" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Отправить" class="btn btn-default" />
+    </div>
+</form>
