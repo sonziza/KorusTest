@@ -18,6 +18,7 @@ namespace KorusTest.Model
         public Employee()
         {
             Telephones = new List<Telephone>();
+            WorkRecords = new List<Workrecord>();
         }
 
 

@@ -10,5 +10,10 @@ namespace KorusTest.Model
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public virtual ICollection<Workrecord> WorkRecords { get; set; }
+        public Position()
+        {
+            WorkRecords = new List<Workrecord>();
+        }
     }
 }

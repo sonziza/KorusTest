@@ -1,52 +1,79 @@
-﻿
+﻿@using KorusTest.ViewModels
 @using KorusTest.Model
-@model IEnumerable<Telephone>
+@model IndexViewModel
 
 @{
-    ViewBag.Title = "Все телефоны";
+    ViewBag.Title = "Все сотрудники";
 }
 
-<!--<form class="form-inline">
-    <label>Выберите сотрудника:</label>
-    <select name="employeeId" class="form-control">
-        foreach (EmployeesModel emp in Model.Employees)
+@*<form class="form-inline">
+        <label>Выберите сотрудника:</label>
+        <select name="employeeId" class="form-control">
+            foreach (EmployeesModel emp in Model.Employees)
+            {
+                <option value="emp.Id">emp.FIO</option>
+            }
+        </select>
+        <input type="submit" />
+    </form>
+    <br />
+    <table class="table">
+        foreach (Telephone t in Model.Telephones)
         {
-            <option value="emp.Id">emp.FIO</option>
+            <tr><td>t.Id</td><td>t.Number</td></tr>
         }
-    </select>
-    <input type="submit" />
-</form>
-<br />
-<table class="table">
-    foreach (Telephone t in Model.Telephones)
-    {
-        <tr><td>t.Id</td><td>t.Number</td></tr>
-    }
-</table>-->
+    </table>*@
 
 
-<a asp-action="Create">Добавить телефон</a>
+@*<a asp-action="Create">Добавить телефон</a>*@
 <table class="table">
     <tr>
         <td>
-            номер
+            ФИО
         </td>
         <td>
-            абонент
+            ЗП
+        </td>
+        <td>
+            Телефоны
+        </td>
+        <td>
+            количество должностей
         </td>
     </tr>
-    @foreach (var item in Model)
+    @foreach (Employee item in Model.Employees)
     {
-        <tr>
-            <td>
-                @item.Id
-            </td>
-            <td>
-                @item.Number
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Employee.FIO)
-            </td>
-        </tr>
+<tr>
+    <td>
+        @item.FIO
+    </td>
+    <td>
+        @item.Salary
+    </td>
+    <td>
+        @*@Html.DisplayFor(modelItem => item.Telephones.Count)*@
+        @foreach (var tel in item.Telephones)
+        {
+            if (tel.EmployeeId == item.Id)
+            {
+                @tel.Number
+                <br />
+            }
+        }
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => Model.Positions.Count())
+        @*foreach (var pos in Model.Positions)
+        {
+            if (pos.Id = )
+            {
+                var name = Model.Positions.Where(p => p.Id == rec.PositionId);
+                @name
+                <br />
+            }
+        }*@
+        
+    </td>
+</tr>
     }
-</table> 
+</table>

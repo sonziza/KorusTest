@@ -65,9 +65,19 @@ namespace EFDataApp.Controllers
         }
         public ActionResult Index()
         {
-            var telephones = db.Telephones.Include(p => p.Employee);
-            return View(telephones.ToList());
+            //var employees = db.Employees.Include(p => p.Telephones);
+            //return View(employees.ToList());
             //return View(await db.Telephones.ToListAsync()); //prev version
+
+
+            //формируем модель представления
+            IndexViewModel ivm = new IndexViewModel { 
+                Employees = db.Employees.Include(p => p.Telephones),
+                Telephones = db.Telephones, 
+                Workrecords = db.Workrecords,
+                Positions=db.Positions.Include(w => w.WorkRecords)
+            };
+            return View(ivm);
         }
         public IActionResult Create()
         {
